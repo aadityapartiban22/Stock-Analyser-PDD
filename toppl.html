@@ -1,0 +1,121 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+  <meta charset="UTF-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1.0">
+  <title>Top Gainers and Losers</title>
+  <style>
+    /* Global Styles */
+    body {
+      font-family: 'Arial', sans-serif;
+      background-color: #f8f9fa;
+      color: #212529;
+      margin: 0;
+      padding: 0;
+    }
+    h2 {
+      text-align: center;
+      font-size: 1.8rem;
+      color: #343a40;
+      margin-top: 20px;
+    }
+
+    /* Table Styles */
+    table {
+      width: 90%;
+      margin: 20px auto;
+      border-collapse: collapse;
+      box-shadow: 0px 4px 6px rgba(0, 0, 0, 0.1);
+      background-color: #fff;
+      border-radius: 8px;
+      overflow: hidden;
+    }
+    th {
+      background-color: #007bff;
+      color: #fff;
+      text-transform: uppercase;
+      font-size: 0.9rem;
+      font-weight: bold;
+      padding: 12px;
+    }
+    td {
+      font-size: 0.9rem;
+      padding: 12px;
+      text-align: center;
+    }
+    tr:nth-child(even) {
+      background-color: #f2f2f2;
+    }
+    tr:hover {
+      background-color: #e9ecef;
+      cursor: pointer;
+    }
+
+    /* Button Styles */
+    .btn {
+      display: inline-block;
+      margin: 20px auto;
+      padding: 10px 20px;
+      background-color: #007bff;
+      color: #fff;
+      text-transform: uppercase;
+      font-weight: bold;
+      font-size: 0.8rem;
+      border: none;
+      border-radius: 4px;
+      cursor: pointer;
+      text-decoration: none;
+      text-align: center;
+    }
+    .btn:hover {
+      background-color: #0056b3;
+    }
+
+    /* Responsive Design */
+    @media (max-width: 768px) {
+      table {
+        width: 100%;
+      }
+      th, td {
+        font-size: 0.8rem;
+      }
+      h2 {
+        font-size: 1.5rem;
+      }
+    }
+  </style>
+</head>
+<body>
+  <h2>Top Gainers</h2>
+  <table id="top-gainers-table">
+    <thead>
+      <tr>
+        <th>Ticker</th>
+        <th>Price</th>
+        <th>Change Amount</th>
+        <th>Change Percentage</th>
+        <th>Volume</th>
+      </tr>
+    </thead>
+    <tbody></tbody>
+  </table>
+
+  <h2>Top Losers</h2>
+  <table id="top-losers-table">
+    <thead>
+      <tr>
+        <th>Ticker</th>
+        <th>Price</th>
+        <th>Change Amount</th>
+        <th>Change Percentage</th>
+        <th>Volume</th>
+      </tr>
+    </thead>
+    <tbody></tbody>
+  </table>
+
+  <a href="#" class="btn">View More Stocks</a>
+
+  <script src="toppl.js"></script>
+</body>
+</html>

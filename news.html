@@ -1,0 +1,142 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Market Sentiment Analysis</title>
+    <style>
+        body {
+            font-family: Arial, sans-serif;
+            background-color: #f9f9f9;
+            color: #333;
+            margin: 20px;
+        }
+        h1 {
+            text-align: center;
+        }
+        #input-container {
+            text-align: center;
+            margin-bottom: 20px;
+        }
+        input[type="text"] {
+            padding: 10px;
+            width: 300px;
+            border: 1px solid #ccc;
+            border-radius: 5px;
+            font-size: 16px;
+        }
+        button {
+            padding: 10px 20px;
+            font-size: 16px;
+            background-color: #007BFF;
+            color: white;
+            border: none;
+            border-radius: 5px;
+            cursor: pointer;
+        }
+        button:hover {
+            background-color: #0056b3;
+        }
+        #results {
+            margin: 20px auto;
+            padding: 10px;
+            max-width: 800px;
+            background: white;
+            border-radius: 8px;
+            box-shadow: 0 2px 4px rgba(0, 0, 0, 0.1);
+        }
+        .article {
+            margin-bottom: 20px;
+            padding: 10px;
+            border-bottom: 1px solid #ddd;
+        }
+        .article:last-child {
+            border-bottom: none;
+        }
+        .title {
+            font-size: 18px;
+            font-weight: bold;
+        }
+        .summary {
+            margin-top: 5px;
+        }
+        .sentiment {
+            margin-top: 5px;
+            font-weight: bold;
+            color: green;
+        }
+        .sentiment.bearish {
+            color: red;
+        }
+        .sentiment.neutral {
+            color: gray;
+        }
+    </style>
+</head>
+<body>
+    <h1>Market Sentiment Analysis</h1>
+
+    <!-- Input Section -->
+    <div id="input-container">
+        <input type="text" id="ticker-input" placeholder="Enter stock tickers (e.g., AAPL,TSLA)" />
+        <button onclick="fetchMarketSentiment()">Get Sentiment</button>
+    </div>
+
+    <!-- Results Section -->
+    <div id="results">
+        <p>Enter stock tickers above to get market sentiment.</p>
+    </div>
+
+    <script>
+        // Alpha Vantage API Key and Endpoint
+        const API_KEY = "E1LWVJIJFLRA9VWJ";
+        const BASE_URL = "https://www.alphavantage.co/query";
+
+        // Function to fetch market sentiment data
+        async function fetchMarketSentiment() {
+            const tickers = document.getElementById("ticker-input").value.trim();
+            if (!tickers) {
+                document.getElementById("results").innerHTML = `<p>Please enter at least one ticker.</p>`;
+                return;
+            }
+
+            try {
+                const response = await fetch(`${BASE_URL}?function=NEWS_SENTIMENT&tickers=${tickers}&apikey=${API_KEY}`);
+                const data = await response.json();
+                displayResults(data);
+            } catch (error) {
+                document.getElementById("results").innerHTML = `<p>Error fetching data: ${error.message}</p>`;
+            }
+        }
+
+        // Function to display results on the webpage
+        function displayResults(data) {
+            const resultsDiv = document.getElementById("results");
+            if (!data.feed || data.feed.length === 0) {
+                resultsDiv.innerHTML = "<p>No news articles found for the given tickers.</p>";
+                return;
+            }
+
+            let html = "";
+            data.feed.forEach((article) => {
+                const sentimentClass =
+                    article.overall_sentiment_label.toLowerCase() === "bullish"
+                        ? "sentiment"
+                        : article.overall_sentiment_label.toLowerCase() === "bearish"
+                        ? "sentiment bearish"
+                        : "sentiment neutral";
+
+                html += `
+                    <div class="article">
+                        <div class="title"><a href="${article.url}" target="_blank">${article.title}</a></div>
+                        <div class="summary">${article.summary}</div>
+                        <div class="${sentimentClass}">Sentiment: ${article.overall_sentiment_label}</div>
+                    </div>
+                `;
+            });
+
+            resultsDiv.innerHTML = html;
+        }
+    </script>
+</body>
+</html>

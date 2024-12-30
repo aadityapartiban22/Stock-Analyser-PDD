@@ -1,0 +1,133 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Exponential Moving Average (EMA)</title>
+    <style>
+        body {
+            font-family: Arial, sans-serif;
+            background-color: #f4f4f9;
+            color: #333;
+            padding: 20px;
+        }
+        h1 {
+            text-align: center;
+        }
+        #input-container {
+            text-align: center;
+            margin-bottom: 20px;
+        }
+        input[type="text"], select {
+            padding: 10px;
+            width: 300px;
+            margin-right: 10px;
+            border: 1px solid #ccc;
+            border-radius: 5px;
+            font-size: 16px;
+        }
+        button {
+            padding: 10px 20px;
+            font-size: 16px;
+            background-color: #007BFF;
+            color: white;
+            border: none;
+            border-radius: 5px;
+            cursor: pointer;
+        }
+        button:hover {
+            background-color: #0056b3;
+        }
+        #results {
+            margin: 20px auto;
+            padding: 10px;
+            max-width: 800px;
+            background: white;
+            border-radius: 8px;
+            box-shadow: 0 2px 4px rgba(0, 0, 0, 0.1);
+        }
+        table {
+            width: 100%;
+            border-collapse: collapse;
+        }
+        th, td {
+            padding: 10px;
+            border: 1px solid #ddd;
+            text-align: left;
+        }
+        th {
+            background-color: #f2f2f2;
+        }
+    </style>
+</head>
+<body>
+    <h1>Exponential Moving Average (EMA)</h1>
+
+    <!-- Input Section -->
+    <div id="input-container">
+        <input type="text" id="ticker-input" placeholder="Enter stock symbol (e.g., IBM)" />
+        <button onclick="fetchEMA()">Get EMA</button>
+    </div>
+
+    <!-- Results Section -->
+    <div id="results">
+        <p>Enter a stock symbol above to get its EMA data.</p>
+    </div>
+
+    <script>
+        // Alpha Vantage API Key and Endpoint
+        const API_KEY = "E1LWVJIJFLRA9VWJ";
+        const BASE_URL = "https://www.alphavantage.co/query";
+
+        // Function to fetch EMA data
+        async function fetchEMA() {
+            const symbol = document.getElementById("ticker-input").value.trim();
+            if (!symbol) {
+                document.getElementById("results").innerHTML = `<p>Please enter a valid stock symbol.</p>`;
+                return;
+            }
+
+            try {
+                const url = `${BASE_URL}?function=EMA&symbol=${symbol}&interval=weekly&time_period=10&series_type=open&apikey=${API_KEY}`;
+                const response = await fetch(url);
+                const data = await response.json();
+
+                if (data["Technical Analysis: EMA"]) {
+                    displayResults(data, symbol);
+                } else {
+                    document.getElementById("results").innerHTML = `<p>Data not available for symbol: ${symbol}</p>`;
+                }
+            } catch (error) {
+                document.getElementById("results").innerHTML = `<p>Error fetching data: ${error.message}</p>`;
+            }
+        }
+
+        // Function to display EMA data
+        function displayResults(data, symbol) {
+            const resultsDiv = document.getElementById("results");
+            const emaData = data["Technical Analysis: EMA"];
+            const rows = Object.keys(emaData).map((date) => {
+                return `<tr>
+                            <td>${date}</td>
+                            <td>${emaData[date]["EMA"]}</td>
+                        </tr>`;
+            }).join("");
+
+            resultsDiv.innerHTML = `
+                <h3>Exponential Moving Average (EMA) for ${symbol.toUpperCase()}</h3>
+                <table>
+                    <thead>
+                        <tr>
+                            <th>Date</th>
+                            <th>EMA</th>
+                        </tr>
+                    </thead>
+                    <tbody>
+                        ${rows}
+                    </tbody>
+                </table>
+            `;
+        }
+    </script>
+</body>
+</html>

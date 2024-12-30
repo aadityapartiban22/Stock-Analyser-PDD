@@ -1,0 +1,548 @@
+
+<!DOCTYPE html>
+<html lang="en">
+  <head>
+    <meta charset="utf-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1">
+
+    
+    <title>Explore stocks </title>
+    
+
+    <!-- plausible -->
+    <script defer
+            event-user="unregistered"
+            
+            
+            data-domain="screener.in"
+            src="https://plausible.screener.in/js/script.pageview-props.tagged-events.js"></script>
+    <script>window.plausible = window.plausible || function () { (window.plausible.q = window.plausible.q || []).push(arguments) }</script>
+
+    <!-- FONT -->
+    <link rel="stylesheet" href="https://cdn-static.screener.in/inter/inter.43d4904a3137.css" />
+    <link rel="stylesheet" href="https://cdn-static.screener.in/fontello/css/fontello.3d9a3b82e52a.css" />
+
+    <!-- CSS -->
+    <link rel="stylesheet" href="https://cdn-static.screener.in/css/normalize.a2444750a947.css" media="all">
+    <link rel="stylesheet" href="https://cdn-static.screener.in/css/skeleton.1b34977e6b65.css" media="all">
+    <link rel="stylesheet" href="https://cdn-static.screener.in/css/custom.edb772496e5f.css" media="all">
+
+    
+<style>
+  main {
+    max-width: 720px;
+  }
+
+  #sidebar {
+    margin-top: 18px;
+  }
+
+  @media (min-width: 576px) {
+    #sidebar {
+      margin-left: 72px;
+      max-width: 300px;
+      min-width: 18%;
+    }
+
+    #sidebar .card {
+      margin-left: 0;
+      margin-right: 0;
+    }
+  }
+
+  @media (min-width: 992px) {
+    #sidebar {
+      /* align sidebar content till right */
+      margin-right: calc(-1 * var(--container-padding));
+    }
+  }
+</style>
+
+    
+<style>
+  main, #sidebar {
+    max-width: unset;
+  }
+
+  @media (min-width: 576px) {
+    #sidebar {
+      width: 28%;
+      box-sizing: border-box;
+      flex-shrink: 0;
+      margin-top: 0;
+    }
+  }
+
+  .screen-items {
+    display: grid;
+    column-gap: 24px;
+    row-gap: 16px;
+    grid-template-columns: 1fr;
+  }
+
+  @media (min-width: 768px) {
+    .screen-items {
+      grid-template-columns: 1fr 1fr 1fr;
+    }
+  }
+
+  .screen-item {
+    box-sizing: border-box;
+    border-radius: 6px;
+    padding: 10px 12px;
+    color: var(--ink-900);
+    border: 1.5px solid var(--border-color);
+    font-size: 1.4rem;
+    letter-spacing: var(--letter-spacing-14);
+    min-width: 100px;
+  }
+
+  .screen-item p {
+    white-space: nowrap;
+    text-overflow: ellipsis;
+    overflow: hidden;
+  }
+</style>
+
+
+    <meta name="Aaditya partiban" content="Aaditya Ventures Limited">
+
+    <!-- PWA manifest -->
+    <meta name="theme-color"
+          content="#fff"
+          media="(prefers-color-scheme: light)">
+    <meta name="theme-color"
+          content="#222530"
+          media="(prefers-color-scheme: dark)">
+    <link rel="manifest" href="/static/manifest.json">
+
+    <!-- favicons -->
+    <link rel="apple-touch-icon"
+          sizes="180x180"
+          href="https://cdn-static.screener.in/favicon/apple-touch-icon.b6e5f24bf7d3.png">
+    <link rel="icon"
+          type="image/png"
+          sizes="32x32"
+          href="https://cdn-static.screener.in/favicon/favicon-32x32.00205914303a.png">
+    <link rel="icon"
+          type="image/png"
+          sizes="16x16"
+          href="https://cdn-static.screener.in/favicon/favicon-16x16.2b35594b2f33.png">
+    <link rel="mask-icon"
+          href="https://cdn-static.screener.in/favicon/safari-pinned-tab.adbe3ed3c5ad.svg"
+          color="#8ED443">
+    <meta name="msapplication-TileColor" content="#da532c">
+  </head>
+
+  <body class="light flex-column">
+    <nav class="u-full-width no-print">
+      <div id="mobile-search"><div class="has-addon left-addon dropdown-typeahead">
+  <i class="addon icon-search"></i>
+  <input
+    aria-label="Search for a company"
+    type="search"
+    autocomplete="off"
+    spellcheck="false"
+    placeholder="Search for a company"
+    class="u-full-width"
+    
+    data-company-search="true">
+</div>
+</div>
+
+<ul class="bottom-menu-bar hide-from-tablet-landscape">
+  
+    <li class="">
+      <a href="mainpage.html">
+        <i class="icon-home"></i>
+        <br>
+        Home
+      </a>
+    </li>
+  
+
+  <li class="active">
+    <a href="screen.html">
+      <i class="icon-screens"></i>
+      <br>
+      Screens
+    </a>
+  </li>
+
+  <li>
+    <button type="button"
+            onclick="MobileMenu.toggleSearch(this)"
+            class="search-button"
+            title="Search">
+      <i class="icon-search" style="font-size: 18px"></i>
+    </button>
+  </li>
+
+  <li>
+    <button class="button-plain" onclick="Modal.showInModal('#nav-tools-menu')">
+      <i class="icon-tools"></i>
+      <br>
+      Tools
+    </button>
+  </li>
+
+  
+    <li class="">
+      <a href="loginpage.html">
+        <i class="icon-user-plus"></i>
+        <br>
+        Login
+      </a>
+    </li>
+  
+</ul>
+
+      <div class="top-nav-holder">
+        <div class="container">
+
+
+
+<div class="layer-holder top-navigation">
+  <div class="layer flex flex-space-between"
+       style="align-items: center;
+              height: 50px">
+    <div class="flex" style="align-items: center">
+      <a href="applogo.png" class="logo-holder">
+        <img alt="CASHFLOW Logo"
+             class="logo"
+             src="applogo.png">
+      </a>
+
+      <div class="desktop-links" style="margin-left: 48px">
+        <a href="mainpage.html">
+          
+            Home
+          
+        </a>
+        <a href="screen.html">Screens</a>
+        <div class="dropdown-menu">
+          <button class="button-plain"
+                  type="button"
+                  onclick="Utils.toggleDropdown(event)">
+            Tools
+            <i class="icon-down"></i>
+          </button>
+          <ul class="dropdown-content flex-column tools-menu"
+              style="width: 350px"
+              id="nav-tools-menu">
+            <li>
+              <a href="tools.html"
+                 class="flex flex-align-center flex-gap-16">
+                <div class="bg-stripes square-56">
+                  <img src="https://cdn-static.screener.in/icons/screens.e960a5daedf9.svg" alt="Create a stock screen">
+                </div>
+                <div>
+                  <div class="font-weight-500 font-size-14">Create a stock screen</div>
+                  <div class="sub font-size-13">Run queries on 10 years of financial data</div>
+                </div>
+              </a>
+            </li>    
+            
+          </ul>
+        </div>
+      </div>
+    </div>
+
+    <div class="show-from-tablet-landscape flex flex-gap-16"
+         style="justify-content: flex-end;
+                flex: 1 1 400px">
+      <div class="search" id="desktop-search"><div class="has-addon left-addon dropdown-typeahead">
+  <i class="addon icon-search"></i>
+  <input
+    aria-label="Search for a company"
+    type="search"
+    autocomplete="off"
+    spellcheck="false"
+    placeholder="Search for a company"
+    class="u-full-width"
+    
+    data-company-search="true">
+</div>
+</div>
+
+      
+        
+    </div>
+  </div>
+</div>
+</div>
+      </div>
+    </nav>
+
+    
+    
+
+    
+<div class="container flex-grow">
+  <div class="breadcrumb"></div>
+  <div class="flex flex-column-mobile">
+    <main class="flex-grow">
+
+
+      
+<div class="flex-row flex-space-between flex-align-center heading-spacing">
+  <h1 class="h2 margin-0">Stock screens</h1>
+  <a class="button button-primary" href="tools.html">Create new screen</a>
+</div>
+
+
+
+
+
+<div class="card card-medium">
+  <h2 class="h3">Popular themes</h2>
+  <p class="sub">Popular investing themes</p>
+  <div class="screen-items">
+      <a class="screen-item" href="news.html">
+          <div class="font-weight-500">
+              Market news and Sentiment
+              <i class="icon-right a smaller"></i>
+          </div>
+          <p class="sub font-size-12 margin-0 show-from-desktop">Graham liked to value stocks based on average earnings of multiple years. This screen uses 10 year average earnings.</p>
+      </a>
+      <a class="screen-item" href="toppl.html">
+          <div class="font-weight-500">
+              Companies creating new high
+              <i class="icon-right a smaller"></i>
+          </div>
+          <p class="sub font-size-12 margin-0 show-from-desktop">Companies with current price around 52 week high</p>
+      </a>
+      <a class="screen-item" href="ema.html">
+          <div class="font-weight-500">
+              EMA Indicator
+              <i class="icon-right a smaller"></i>
+          </div>
+          <p class="sub font-size-12 margin-0 show-from-desktop">FII buying</p>
+      </a>
+  </div>
+</div>
+
+<div class="card">
+  <h2 class="h3">Browse Sectors</h2>
+  <div class="screen-items">
+      <a class="screen-item" href="aerospace.html">
+          <div class="font-weight-500">
+              Aerospace &amp; Defence
+              <i class="icon-right a smaller"></i>
+          </div>
+      </a>
+      <a class="screen-item" href="agro.html">
+          <div class="font-weight-500">
+              Agro Chemicals
+              <i class="icon-right a smaller"></i>
+          </div>
+      </a>
+      <a class="screen-item" href="air.html">
+          <div class="font-weight-500">
+              Air Transport Service
+              <i class="icon-right a smaller"></i>
+          </div>
+      </a>
+      <a class="screen-item" href="alcohol.html">
+          <div class="font-weight-500">
+              Alcoholic Beverages
+              <i class="icon-right a smaller"></i>
+          </div>
+      </a>
+      <a class="screen-item" href="autoculn.html">
+          <div class="font-weight-500">
+              Auto Ancillaries
+              <i class="icon-right a smaller"></i>
+          </div>
+      </a>
+      <a class="screen-item" href="automob.html">
+          <div class="font-weight-500">
+              Automobile
+              <i class="icon-right a smaller"></i>
+          </div>
+      </a>
+      <a class="screen-item" href="banks.html">
+          <div class="font-weight-500">
+              Banks
+              <i class="icon-right a smaller"></i>
+          </div>
+      </a>
+      <a class="screen-item" href="bearing.html">
+          <div class="font-weight-500">
+              Bearings
+              <i class="icon-right a smaller"></i>
+          </div>
+      </a>
+      <a class="screen-item" href="cable.html">
+          <div class="font-weight-500">
+              Cables
+              <i class="icon-right a smaller"></i>
+          </div>
+      </a>
+      <a class="screen-item" href="goods.html">
+          <div class="font-weight-500">
+              Capital Goods - Electrical Equipment
+              <i class="icon-right a smaller"></i>
+          </div>
+      </a>
+      <a class="screen-item" href="cast.html">
+          <div class="font-weight-500">
+              Castings, Forgings &amp; Fasteners
+              <i class="icon-right a smaller"></i>
+          </div>
+      </a>
+      <a class="screen-item" href="cement.html">
+          <div class="font-weight-500">
+              Cement
+              <i class="icon-right a smaller"></i>
+          </div>
+      </a>
+      <a class="screen-item" href="ceramic.html">
+          <div class="font-weight-500">
+              Ceramic Products
+              <i class="icon-right a smaller"></i>
+          </div>
+      </a>
+      <a class="screen-item" href="construction.html">
+          <div class="font-weight-500">
+              Construction
+              <i class="icon-right a smaller"></i>
+          </div>
+      </a>
+      <a class="screen-item" href="electronic.html">
+          <div class="font-weight-500">
+              Consumer Durables
+              <i class="icon-right a smaller"></i>
+          </div>
+      </a>
+      <a class="screen-item" href="credit.html">
+          <div class="font-weight-500">
+              Credit Rating Agencies
+              <i class="icon-right a smaller"></i>
+          </div>
+      </a>
+      <a class="screen-item" href="oil.html">
+          <div class="font-weight-500">
+              Crude Oil &amp; Natural Gas
+              <i class="icon-right a smaller"></i>
+          </div>
+      </a>
+      <a class="screen-item" href="jewel.html">
+          <div class="font-weight-500">
+              Diamond, Gems, and Jewellery
+              <i class="icon-right a smaller"></i>
+          </div>
+      </a>
+      <a class="screen-item" href="diverse.html">
+          <div class="font-weight-500">
+              Diversified
+              <i class="icon-right a smaller"></i>
+          </div>
+      </a>
+      <a class="screen-item" href="cell.html">
+          <div class="font-weight-500">
+              Dry Cells
+              <i class="icon-right a smaller"></i>
+          </div>
+      </a>
+      <a class="screen-item" href="it.html">
+          <div class="font-weight-500">
+              IT-Software Companies
+              <i class="icon-right a smaller"></i>
+          </div>
+      </a>
+      <a class="screen-item" href="ports.html">
+        <div class="font-weight-500">
+            Marine & Ports
+            <i class="icon-right a smaller"></i>
+        </div>
+      </a>
+      <a class="screen-item" href="ship.html">
+        <div class="font-weight-500">
+            Ship Building
+            <i class="icon-right a smaller"></i>
+        </div>
+      </a>
+      <a class="screen-item" href="tyres.html">
+        <div class="font-weight-500">
+            tyres and Rubber Companies
+            <i class="icon-right a smaller"></i>
+        </div>
+      </a>
+  </div>
+</div>
+
+    
+      
+
+<footer id="large-footer">
+  <div class="flex-row flex-space-between flex-column-tablet container no-print">
+    <div class="hide-from-tablet" style="margin-bottom: 16px;">
+      <img src="applogo.png"
+           alt="Logo"
+           style="max-width: 120px"
+           class="logo">
+    </div>
+
+    <div class="show-from-tablet" style="padding: 0 64px 0 0;">
+      <img src="applogo.png"
+           alt="Cashflow"
+           style="max-width: 120px"
+           class="logo">
+      <p class="font-size-19" style="font-weight: 500;">Stock analysis and screening tool</p>
+      <p class="sub">
+        Aaditya Ventures Private Ltd &copy;
+        <br>
+        Made with <i class="icon-heart red"></i> in India.
+      </p>
+
+    </div>
+
+      <div class="flex-end">
+        <div class="title">Theme</div>
+        <ul class="items">
+          <li>
+            <button onclick="SetTheme('light')"
+                    aria-label="Set light theme"
+                    class="button-plain">
+              <i class="icon-sun"></i>
+              Light
+            </button>
+          </li>
+          <li>
+            <button onclick="SetTheme('dark')"
+                    aria-label="Set dark theme"
+                    class="button-plain">
+              <i class="icon-moon"></i>
+              Dark
+            </button>
+          </li>
+          <li>
+            <button onclick="SetTheme('auto')"
+                    aria-label="Set auto theme"
+                    class="button-plain">
+              <i class="icon-monitor"></i>
+              Auto
+            </button>
+          </li>
+        </ul>
+      </div>
+
+    <div class="hide-from-tablet">
+      <hr>
+      <p class="sub">Aaditya Ventures Private Ltd &copy; 2024</p>
+      <p class="sub"></p>
+    </div>
+  </div>
+</footer>
+
+    
+
+   <script src="handling.js"></script>
+   <script src="typehead.js"></script>
+   <script src="theme.js"></script>
+   <script src="compsearch.js"></script>
+    
+  
+  </body>
+</html>
